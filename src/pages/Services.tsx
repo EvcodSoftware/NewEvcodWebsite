@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import WhatWeOffer from './WhatWeOffer';
+import WhatWeOffer from '../components/WhatWeOffer';
 
 const Services: React.FC = () => {
   const features = [
