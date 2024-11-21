@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from 'src/assets/images/logo.png';
 
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +12,8 @@ const Navigation: React.FC = () => {
   return (
     <nav className="bg-black p-4">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <Link to="/" className="text-white text-2xl font-bold">
+        <Link to="/" className="flex items-center text-white text-2xl font-bold whitespace-nowrap">
+          <img src={logo} alt="Logo" className="h-8 w-auto mr-2"/>
           Evcod Software
         </Link>
 
