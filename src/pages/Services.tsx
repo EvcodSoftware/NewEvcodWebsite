@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import WhatWeOffer from 'src/components/WhatWeOffer';
+import WhatWeOffer from 'src/features/shared/sections/WhatWeOffer';
+import { useNavigate } from 'react-router-dom';
 
 const Services: React.FC = () => {
+  const navigate = useNavigate();
   const features = [
     {
       title: 'Agile Development',
@@ -106,7 +108,7 @@ const Services: React.FC = () => {
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Let's discuss how our services can help you achieve your goals
             </p>
-            <button className="bg-gradient-to-r from-blue-400 to-purple-400 text-black px-8 py-4 rounded-full font-semibold hover:from-blue-300 hover:to-purple-300 transform hover:scale-105 transition-all duration-300">
+            <button onClick={() => navigate('/contact')} className="bg-gradient-to-r from-blue-400 to-purple-400 text-black px-8 py-4 rounded-full font-semibold hover:from-blue-300 hover:to-purple-300 transform hover:scale-105 transition-all duration-300">
               Get Started
             </button>
           </motion.div>

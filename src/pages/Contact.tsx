@@ -9,10 +9,32 @@ const Contact: React.FC = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
+    try {
+      const response = await fetch('https://formspree.io/f/mvodwzyq', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        // Clear the form
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+        alert('Message sent successfully!');
+      } else {
+        alert('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -74,7 +96,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-300">Phone</h3>
-                    <p className="text-gray-400">+1 (555) 123-4567</p>
+                    <p className="text-gray-400">+852 6840 9334</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
@@ -85,7 +107,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-300">Email</h3>
-                    <p className="text-gray-400">contact@evcod.com</p>
+                    <p className="text-gray-400">jeffrey.lam@evcod.com</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
@@ -97,7 +119,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-300">Location</h3>
-                    <p className="text-gray-400">San Francisco, CA</p>
+                    <p className="text-gray-400">Hong Kong / Toronto, ON, Canada</p>
                   </div>
                 </div>
               </div>

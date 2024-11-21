@@ -1,7 +1,47 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
+/**
+ * Interface for achievement data
+ */
+export interface Achivement {
+  "title": string,
+  "value": string,
+}
+
+/**
+ * Interface for AchivementCard props
+ */
+interface AchivementCardProps {
+  index: number;
+  achievement: Achivement;
+}
+
+/**
+ * Function component for rendering achievement cards
+ */
+const AchivementCard: React.FC<AchivementCardProps> = (props) => (
+  <motion.div className="text-center" initial={{
+    opacity: 0
+  }} animate={{
+    opacity: 1
+  }} transition={{
+    duration: 0.6,
+    delay: props.index * 0.2
+  }}>
+    <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text mb-2">
+      {props.achievement.value}
+    </div>
+    <div className="text-gray-400">{props.achievement.title}</div>
+  </motion.div>
+);
+
+/**
+ * Main About page component
+ */
 const About: React.FC = () => {
+  const navigate = useNavigate();
   const values = [
     {
       title: 'Innovation',
@@ -32,22 +72,22 @@ const About: React.FC = () => {
     }
   ];
 
-  const achievements = [
+  const achievements: Achivement[] = [
     {
       title: 'Years of Experience',
       value: '10+'
     },
     {
-      title: 'Projects Completed',
-      value: '500+'
+      title: 'Innovative Solutions Developed',
+      value: '3+'
     },
     {
       title: 'Client Satisfaction',
       value: '99%'
     },
     {
-      title: 'Team Members',
-      value: '50+'
+      title: 'Annual Growth Rate',
+      value: '15%'
     }
   ];
 
@@ -56,15 +96,15 @@ const About: React.FC = () => {
       {/* Hero Section */}
       <div className="relative h-[40vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80" 
-            alt="About Hero" 
+          <img
+            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80"
+            alt="About Hero"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
         </div>
         <div className="relative container mx-auto px-4 text-center">
-          <motion.h1 
+          <motion.h1
             className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -72,7 +112,7 @@ const About: React.FC = () => {
           >
             About Evcod
           </motion.h1>
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-300 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -109,7 +149,7 @@ const About: React.FC = () => {
             >
               <h3 className="text-2xl font-bold mb-4 text-white">Our Mission</h3>
               <p className="text-gray-400">
-                We're dedicated to pushing the boundaries of what's possible in software development. 
+                We're dedicated to pushing the boundaries of what's possible in software development.
                 Our mission is to create innovative solutions that empower businesses and transform industries.
               </p>
             </motion.div>
@@ -122,7 +162,7 @@ const About: React.FC = () => {
             >
               <h3 className="text-2xl font-bold mb-4 text-white">Our Vision</h3>
               <p className="text-gray-400">
-                We envision a future where technology seamlessly enhances human potential. 
+                We envision a future where technology seamlessly enhances human potential.
                 Through continuous innovation and dedication to excellence, we're working to make that future a reality.
               </p>
             </motion.div>
@@ -174,18 +214,7 @@ const About: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {achievements.map((achievement, index) => (
-              <motion.div
-                key={index}
-                className="text-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-              >
-                <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text mb-2">
-                  {achievement.value}
-                </div>
-                <div className="text-gray-400">{achievement.title}</div>
-              </motion.div>
+              <AchivementCard key={index} achievement={achievement} index={index}></AchivementCard>
             ))}
           </div>
         </div>
@@ -206,7 +235,10 @@ const About: React.FC = () => {
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Let's create something extraordinary together
             </p>
-            <button className="bg-gradient-to-r from-blue-400 to-purple-400 text-black px-8 py-4 rounded-full font-semibold hover:from-blue-300 hover:to-purple-300 transform hover:scale-105 transition-all duration-300">
+            <button
+              className="bg-gradient-to-r from-blue-400 to-purple-400 text-black px-8 py-4 rounded-full font-semibold hover:from-blue-300 hover:to-purple-300 transform hover:scale-105 transition-all duration-300"
+              onClick={() => navigate('/contact')}
+            >
               Get in Touch
             </button>
           </motion.div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import WhatWeOffer from 'src/components/WhatWeOffer';
+import WhatWeOffer from 'src/features/shared/sections/WhatWeOffer';
 
 const Home: React.FC = () => {
   return (
